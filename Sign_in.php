@@ -1,5 +1,8 @@
 
 <html>
+<head>
+  <link rel="stylesheet" href="main.css">
+</head>
 <?php
 $dbOk = false;
 
@@ -13,10 +16,15 @@ if ($db->connect_error) {
 } else {
   $dbOk = true;
 }
-//$sql='select id, username, password FROM user_list WHERE username='.$_POST['username']. ' and password='.$_POST['pwd'] ;
 $result= $db->query("select * FROM user_list WHERE Username="."'".$_POST['username']."'"."and Password=" ."'".$_POST['pwd']."'");
 $row=$result->fetch_assoc();
-echo $row['id'];
-//echo $sql;
+if(is_null($row)){
+  header('Location: index.html');
+}
+else{
+  echo '<body></body>';
+}
+//checks the username and password
 ?>
+
 </html>
